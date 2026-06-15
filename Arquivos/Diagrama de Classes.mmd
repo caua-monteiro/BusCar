@@ -1,0 +1,146 @@
+classDiagram
+    class User {
+        UUID id
+        string name
+        string email
+        string phone
+        string cpf
+        string adress
+        float avaliation
+        datetime RegisterDate
+        datetime UpdateDate
+        +register()
+        +autenticate()
+        +updatePerfil()
+        +evaluationView()
+    }
+
+    class Owner {
+        float dailyTariff
+        int totalCars
+        +listCars()
+        +addCar()
+        +removeCar()
+        +checkReservations()
+        +calculateEarnings()
+    }
+
+    class Renter {
+        string creditCardInfo
+        int activeReservations
+        +findCars()
+        +filterByDateLocation()
+        +makeReservation()
+        +cancelReservation()
+        +viewRentalHistory()
+    }
+
+    class Cars {
+        UUID id
+        string brand
+        string model
+        int year
+        string plate
+        string color
+        float dailyRate
+        int kilometragem
+        string fuelType
+        string status
+        datetime lastMaintenance
+        +updateStatus()
+        +defineDisponibilidade()
+        +registerMaintenance()
+        +getDetails()
+    }
+
+    class Location {
+        UUID id
+        string address
+        string city
+        string estate
+        string cep
+        +calculateDistance()
+        +getNearbyLocations()
+    }
+
+    class Reservation {
+        UUID id
+        datetime startDate
+        datetime endDate
+        float totalValue
+        string status
+        datetime reservationDate
+        +confirm()
+        +cancel()
+        +calculateValue()
+        +generateReceipt()
+    }
+
+    class Evaluation {
+        UUID id
+        int rating
+        string comentary
+        datetime date
+        string category
+        +save()
+        +edit()
+        +delete()
+    }
+
+    class Payment {
+        UUID id
+        float value
+        string method
+        string status
+        datetime paymentDate
+        string transactionId
+        +process()
+        +confirm()
+        +refund()
+        +generateReceipt()
+    }
+
+    class Insurance {
+        UUID id
+        string type
+        float value
+        string cobertura
+        datetime endDate
+        +validate()
+        +renew()
+        +getDetails()
+    }
+
+    class Notification {
+        UUID id
+        string type
+        string message
+        boolean read
+        datetime date
+        +send()
+        +markAsRead()
+        +delete()
+    }
+
+    class Fine {
+        UUID id
+        float value
+        string reason
+        datetime date
+        string status
+        +apply()
+        +pay()
+        +cancel()
+    }
+
+    User <|-- Owner : herança
+    User <|-- Renter : herança
+    Owner "1" -- "*" Cars : possui
+    Renter "1" -- "*" Reservation : faz
+    Cars "1" -- "*" Reservation : é aluguel
+    Cars "1" -- "1" Location : localizado
+    Reservation "1" -- "1" Payment : gera
+    Reservation "1" -- "1" Insurance : inclui
+    Reservation "*" -- "*" Evaluation : recebe
+    User "*" -- "*" Notification : recebe
+    Reservation "1" -- "*" Fine : pode gerar
