@@ -1,0 +1,142 @@
+/* Container que cobre a tela com o background original */
+.cadastro-page-wrapper {
+  min-height: 100vh;
+  width: 100vw;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: system-ui, -apple-system, sans-serif;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+/* Card Glassmorphism alinhado com o Login */
+.glass-cadastro-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 24px;
+  padding: 40px 32px 24px 32px;
+  width: 100%;
+  max-width: 460px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  position: relative;
+  box-sizing: border-box;
+  margin-top: 20px;
+}
+
+/* Badge da Logo flutuando no topo */
+.cadastro-logo-container {
+  position: absolute;
+  top: -45px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffff;
+  padding: 12px 24px;
+  border-radius: 14px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.04);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cadastro-logo-img {
+  width: 90px;
+  height: auto;
+}
+
+.glass-cadastro-card h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #1e293b;
+  font-weight: 700;
+  margin: 20px 0 8px 0;
+}
+
+.cadastro-subtitle {
+  text-align: center;
+  color: #475569;
+  font-size: 0.95rem;
+  margin: 0 0 28px 0;
+}
+
+/* Formulário e Grupos de Input */
+.cadastro-field-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.cadastro-field-group label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1e3a8a;
+  margin-bottom: 6px;
+}
+
+.cadastro-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.cadastro-icon {
+  position: absolute;
+  left: 14px;
+  color: #94a3b8;
+  font-size: 1.1rem;
+  pointer-events: none;
+}
+
+/* Dá espaço no seu input customizado para o ícone da esquerda */
+.cadastro-input-wrapper .input {
+  padding-left: 40px !important;
+}
+
+/* Botão com o gradiente padrão */
+.cadastro-btn-gradient {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%) !important;
+  color: white !important;
+  border: none;
+  border-radius: 14px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(30, 64, 175, 0.25);
+  transition: all 0.2s ease;
+  margin-top: 10px;
+}
+
+.cadastro-btn-gradient:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+/* Rodapé interno do card */
+.cadastro-card-inner-footer {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.cadastro-card-inner-footer p {
+  font-size: 0.9rem;
+  color: #475569;
+  margin: 0;
+}
+
+.cadastro-card-inner-footer a {
+  color: #1d4ed8;
+  font-weight: 700;
+  text-decoration: none;
+  margin-left: 4px;
+}
+
+.cadastro-card-inner-footer a:hover {
+  text-decoration: underline;
+}

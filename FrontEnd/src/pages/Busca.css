@@ -1,0 +1,110 @@
+.busca-page {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f8fafc;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+.busca-container {
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+/* Cabeçalho da pesquisa */
+.busca-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.busca-header h2 {
+  font-size: 2rem;
+  color: #0f172a;
+  font-weight: 800;
+  margin: 0 0 8px 0;
+}
+
+.busca-header p {
+  color: #64748b;
+  font-size: 1rem;
+  margin: 0 0 24px 0;
+}
+
+/* Barra de Pesquisa centralizada */
+.search-bar-wrapper {
+  position: relative;
+  max-width: 540px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  width: 100%;
+  padding: 14px 16px 14px 44px;
+  border-radius: 12px;
+  border: 1px solid #cbd5e1;
+  background-color: #ffffff;
+  font-size: 1rem;
+  color: #0f172a;
+  outline: none;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+.search-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 211, 0.15);
+}
+
+.search-icon {
+  position: absolute;
+  left: 16px;
+  color: #94a3b8;
+  font-size: 1.1rem;
+  pointer-events: none;
+}
+
+/* Grid de Resultados responsivo */
+.grid-resultados {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 16px;
+}
+
+/* Permite que o card inteiro seja clicável sem quebrar o layout */
+.grid-resultados > div {
+  cursor: pointer;
+}
+
+/* Estado de busca vazia */
+.busca-vazia {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  max-width: 400px;
+  margin: 40px auto 0 auto;
+}
+
+.vazia-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.busca-vazia h4 {
+  font-size: 1.2rem;
+  color: #1e293b;
+  margin: 0 0 8px 0;
+  font-weight: 700;
+}
+
+.busca-vazia p {
+  color: #64748b;
+  font-size: 0.95rem;
+  margin: 0;
+}

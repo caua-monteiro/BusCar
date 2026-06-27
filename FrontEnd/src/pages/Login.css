@@ -1,0 +1,162 @@
+/* Container principal */
+.login-page-wrapper {
+  min-height: 100vh;
+  width: 100vw;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: system-ui, -apple-system, sans-serif;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Card Glassmorphism - Aumentado para 460px para segurar o texto em uma linha */
+.glass-login-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 24px;
+  padding: 40px 32px 24px 32px;
+  width: 100%;
+  max-width: 460px; 
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* Badge da Logo */
+.login-logo-container {
+  position: absolute;
+  top: -45px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffff;
+  padding: 12px 24px;
+  border-radius: 14px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.04);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-logo-img {
+  width: 90px;
+  height: auto;
+}
+
+.glass-login-card h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #1e293b;
+  font-weight: 700;
+  margin: 20px 0 8px 0;
+}
+
+/* Subtítulo ajustado */
+.login-subtitle {
+  text-align: center;
+  color: #475569;
+  font-size: 0.95rem;
+  margin: 0 0 32px 0;
+}
+
+/* Força o texto a não quebrar de linha */
+.single-line {
+  white-space: nowrap;
+}
+
+/* Inputs e Grupos */
+.input-field-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.input-field-group label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1e3a8a;
+  margin-bottom: 8px;
+}
+
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 14px;
+  color: #94a3b8;
+  font-size: 1.1rem;
+  pointer-events: none;
+}
+
+.input-with-icon .input {
+  padding-left: 40px !important;
+}
+
+.forgot-password-link {
+  text-align: right;
+  margin-top: -8px;
+  margin-bottom: 32px;
+}
+
+.forgot-password-link a {
+  color: #1e3a8a;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.forgot-password-link a:hover {
+  text-decoration: underline;
+}
+
+/* Botão Azul */
+.login-btn-gradient {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%) !important;
+  color: white !important;
+  border: none;
+  border-radius: 14px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(30, 64, 175, 0.25);
+  transition: all 0.2s ease;
+}
+
+.login-btn-gradient:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+/* Novo rodapé posicionado DENTRO do vidro */
+.login-card-inner-footer {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.login-card-inner-footer p {
+  font-size: 0.9rem;
+  color: #475569;
+  margin: 0;
+}
+
+.login-card-inner-footer a {
+  color: #1d4ed8;
+  font-weight: 700;
+  text-decoration: none;
+  margin-left: 4px;
+}
+
+.login-card-inner-footer a:hover {
+  text-decoration: underline;
+}
