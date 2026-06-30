@@ -39,7 +39,9 @@ export default function Chat() {
       ws.current.close();
     }
     const token = localStorage.getItem("token");
-    ws.current = new WebSocket(`ws://localhost:3000/chat?token=${token}&conversaId=${conversaId}`);
+    const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:3000";
+    const wsUrl = baseUrl.replace(/^http/, "ws") + `/chat?token=${token}&conversaId=${conversaId}`;
+    ws.current = new WebSocket(wsUrl);
 
     ws.current.onmessage = (event) => {
       const msg = JSON.parse(event.data);

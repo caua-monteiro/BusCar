@@ -53,7 +53,7 @@ export class CarrosController {
             res.status(201).json(carro);
         } catch (error: any) {
             if (error instanceof z.ZodError) {
-                res.status(400).json({ error: error.errors });
+                res.status(400).json({ error: (error as any).errors });
             } else {
                 res.status(500).json({ error: error.message });
             }
@@ -85,7 +85,7 @@ export class CarrosController {
             res.json(carro);
         } catch (error: any) {
             if (error instanceof z.ZodError) {
-                res.status(400).json({ error: error.errors });
+                res.status(400).json({ error: (error as any).errors });
             } else {
                 res.status(403).json({ error: error.message });
             }

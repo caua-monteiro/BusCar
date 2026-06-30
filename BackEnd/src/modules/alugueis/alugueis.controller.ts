@@ -28,7 +28,7 @@ export class AlugueisController {
             res.status(201).json(aluguel);
         } catch (error: any) {
             if (error instanceof z.ZodError) {
-                res.status(400).json({ error: error.errors });
+                res.status(400).json({ error: (error as any).errors });
             } else {
                 res.status(400).json({ error: error.message });
             }
