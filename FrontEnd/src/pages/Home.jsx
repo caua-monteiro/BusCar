@@ -1,17 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Home.css';
-
-// Importando componentes conforme sua árvore de arquivos
+import { useNavigate } from 'react-router-dom';
 import CardCarro from '../components/CardCarro';
 import carroBg from '../assets/car-login.png'; 
-
-// Mock temporário que será facilmente substituído pela requisição do seu Backend (API)
-const CARROS_DESTAQUE_MOCK = [
-  { id: 1, marca: 'BMW', modelo: 'Série 8 Coupe', ano: 2023, precoDiaria: 450, avaliacao: 4.9, prestador: 'Carlos S.' },
-  { id: 3, marca: 'Volkswagen', modelo: 'Nivus Highline', ano: 2023, precoDiaria: 190, avaliacao: 4.8, prestador: 'Marcos V.' }
-];
+import { getAllCarros } from '../services/carroService';
 
 export default function Home() {
+  const [carros, setCarros] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchCarros = async () => {
+      try {
+        const res = await getAllCarros();
+        // Pegar apenas os 3 carros mais recentes para os destaques
+        const destaques = res.data.slice(-3).reverse();
+        setCarros(destaques);
+      } catch (err) {
+        console.error("Erro ao buscar carros", err);
+      }
+    };
+    fetchCarros();
+  }, []);
+
   return (
     <div className="home-page">
       
@@ -23,10 +34,10 @@ export default function Home() {
             <p>Alugue veículos incríveis direto de proprietários locais com total segurança.</p>
             
             <div className="hero-actions">
-              <button className="btn-hero-primary" onClick={() => window.location.href = "/busca"}>
+              <button className="btn-hero-primary" onClick={() => navigate("/busca")}>
                 🔍 Encontrar um Carro
               </button>
-              <button className="btn-hero-secondary" onClick={() => window.location.href = "/disponibilizar"}>
+              <button className="btn-hero-secondary" onClick={() => navigate("/disponibilizar")}>
                 🔑 Anunciar meu Veículo
               </button>
             </div>
@@ -55,14 +66,18 @@ export default function Home() {
       <section className="home-featured-cars">
         <div className="section-title-wrapper">
           <h3>Veículos em Destaque</h3>
-          <a href="/busca" className="see-all-link">Ver todos →</a>
+          <span onClick={() => navigate("/busca")} className="see-all-link" style={{cursor: 'pointer'}}>Ver todos →</span>
         </div>
         
-        <div className="featured-grid">
-          {CARROS_DESTAQUE_MOCK.map(carro => (
-            <CardCarro key={carro.id} carro={carro} />
-          ))}
-        </div>
+        {carros.length === 0 ? (
+          <p style={{textAlign: 'center', color: '#64748b'}}>Nenhum veículo cadastrado ainda.</p>
+        ) : (
+          <div className="featured-grid">
+            {carros.map(carro => (
+              <CardCarro key={carro.id} carro={carro} />
+            ))}
+          </div>
+        )}
       </section>
 
     </div>

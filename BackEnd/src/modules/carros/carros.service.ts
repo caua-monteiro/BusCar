@@ -4,6 +4,7 @@ import { User } from "../../entities/User";
 
 export class CarrosService {
     private carroRepository = AppDataSource.getRepository(Carro);
+    private userRepository = AppDataSource.getRepository(User);
 
     async listAll(filters: any) {
         const query = this.carroRepository.createQueryBuilder("carro");
@@ -50,22 +51,24 @@ export class CarrosService {
     }
 
     async create(usuarioId: number, data: any) {
-        const user = new User();
-        user.id = usuarioId;
+        // Verificar se o usuário possui CNH antes de permitir a publicação
+        const user = await this.userRepository.findOneBy({ id: usuarioId });
+        if (!user) throw new Error("Usuário não encontrado");
+        if (!user.cnh || user.cnh.trim() === "") {
+            throw new Error("É necessário ter CNH cadastrada para publicar um veículo");
+        }
 
         const carro = this.carroRepository.create({
             ...data,
-            proprietario: user
+            proprietario: { id: usuarioId }
         });
-
         await this.carroRepository.save(carro);
         return carro;
     }
 
     async getMeusCarros(usuarioId: number) {
         return await this.carroRepository.find({
-            where: { proprietario: { id: usuarioId } },
-            select: ["id", "modelo", "marca"]
+            where: { proprietario: { id: usuarioId } }
         });
     }
 

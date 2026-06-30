@@ -3,7 +3,7 @@ import { AuthController } from "./modules/auth/auth.controller";
 import { HomeController } from "./modules/home/home.controller";
 import { CarrosController } from "./modules/carros/carros.controller";
 import { authMiddleware } from "./middlewares/auth.middleware";
-
+import { upload } from "./config/multer";
 import { AlugueisController } from "./modules/alugueis/alugueis.controller";
 import { UsuariosController } from "./modules/usuarios/usuarios.controller";
 import { ChatController } from "./modules/chat/chat.controller";
@@ -28,7 +28,7 @@ routes.get("/home", homeController.getDestaques);
 routes.get("/carros", carrosController.listAll);
 routes.get("/carros/meus", authMiddleware, carrosController.getMeusCarros);
 routes.get("/carros/:id", carrosController.getById);
-routes.post("/carros", authMiddleware, carrosController.create);
+routes.post("/carros", authMiddleware, upload.single("imagem"), carrosController.create);
 routes.put("/carros/:id", authMiddleware, carrosController.update);
 routes.delete("/carros/:id", authMiddleware, carrosController.delete);
 

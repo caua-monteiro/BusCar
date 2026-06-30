@@ -8,8 +8,8 @@ const carrosService = new CarrosService();
 const createCarroSchema = z.object({
     marca: z.string().min(1),
     modelo: z.string().min(1),
-    ano: z.number().int().min(1900),
-    precoDia: z.number().positive(),
+    ano: z.coerce.number().int().min(1900),
+    precoDia: z.coerce.number().positive(),
     descricao: z.string().optional(),
     cidade: z.string().min(1)
 });
@@ -40,7 +40,16 @@ export class CarrosController {
                 return;
             }
             const data = createCarroSchema.parse(req.body);
-            const carro = await carrosService.create(req.usuarioId, data);
+            
+            // Se houver arquivo anexado pelo multer, pegamos o nome dele
+            const imagem = req.file ? `uploads/${req.file.filename}` : null;
+            
+            const carroData = {
+                ...data,
+                imagem
+            };
+
+            const carro = await carrosService.create(req.usuarioId, carroData);
             res.status(201).json(carro);
         } catch (error: any) {
             if (error instanceof z.ZodError) {

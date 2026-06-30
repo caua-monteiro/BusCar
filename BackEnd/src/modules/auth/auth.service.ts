@@ -7,7 +7,7 @@ export class AuthService {
     private userRepository = AppDataSource.getRepository(User);
 
     async register(data: any) {
-        const { nome, email, senha, telefone } = data;
+        const { nome, email, senha, telefone, cpf, endereco, cnh } = data;
 
         const exists = await this.userRepository.findOneBy({ email });
         if (exists) {
@@ -20,7 +20,10 @@ export class AuthService {
             nome,
             email,
             senha: hash,
-            telefone
+            telefone,
+            cpf,
+            endereco,
+            cnh
         });
 
         await this.userRepository.save(user);

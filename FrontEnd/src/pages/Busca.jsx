@@ -1,23 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Busca.css';
 import CardCarro from '../components/CardCarro';
-
-// Mock mais robusto de veículos para simular a resposta da listagem da API do Backend
-const BANCO_DE_CARROS_MOCK = [
-  { id: 1, marca: 'BMW', modelo: 'Série 8 Coupe', ano: 2023, precoDiaria: 450, avaliacao: 5.0, prestador: 'Carlos S.', imagem: '' },
-  { id: 2, marca: 'Chevrolet', modelo: 'Onix Turbo', ano: 2022, precoDiaria: 120, avaliacao: 4.5, prestador: 'Ana J.', imagem: '' },
-  { id: 3, marca: 'Volkswagen', modelo: 'Nivus Highline', ano: 2023, precoDiaria: 190, avaliacao: 4.8, prestador: 'Marcos V.', imagem: '' },
-  { id: 4, marca: 'Hyundai', modelo: 'HB20 Nova Geração', ano: 2021, precoDiaria: 105, avaliacao: 4.2, prestador: 'Roberto F.', imagem: '' }
-];
+import { getAllCarros } from '../services/carroService';
 
 export default function Busca() {
   const [termoBusca, setTermoBusca] = useState('');
+  const [carros, setCarros] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchCarros = async () => {
+      try {
+        const res = await getAllCarros();
+        setCarros(res.data);
+      } catch (err) {
+        console.error("Erro ao buscar carros", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchCarros();
+  }, []);
 
   // Lógica de filtragem reativa baseada no input digitado
-  const carrosFiltrados = BANCO_DE_CARROS_MOCK.filter(carro => 
-    carro.modelo.toLowerCase().includes(termoBusca.toLowerCase()) ||
-    carro.marca.toLowerCase().includes(termoBusca.toLowerCase())
-  );
+  const carrosFiltrados = carros.filter(carro => {
+    const termo = termoBusca.toLowerCase();
+    const modelo = carro.modelo ? carro.modelo.toLowerCase() : '';
+    const marca = carro.marca ? carro.marca.toLowerCase() : '';
+    return modelo.includes(termo) || marca.includes(termo);
+  });
 
   return (
     <div className="busca-page">
@@ -41,11 +52,12 @@ export default function Busca() {
         </div>
 
         {/* LISTAGEM DE RESULTADOS */}
-        {carrosFiltrados.length > 0 ? (
+        {loading ? (
+          <p style={{textAlign: 'center', marginTop: '50px'}}>Buscando veículos disponíveis...</p>
+        ) : carrosFiltrados.length > 0 ? (
           <div className="grid-resultados">
             {carrosFiltrados.map(carro => (
-              // Interceptamos o clique do botão do card redirecionando nativamente para a rota do carro
-              <div key={carro.id} onClick={() => window.location.href = `/carro`}>
+              <div key={carro.id}>
                 <CardCarro carro={carro} />
               </div>
             ))}

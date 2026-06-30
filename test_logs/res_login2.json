@@ -1,0 +1,8 @@
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzgyNDMyNDgyLCJleHAiOjE3ODI1MTg4ODJ9.JefPkZWoMas3QR73twwJB9Zm18Q57HvqbTbJlj6P4Kk",
+  "usuario": {
+    "id": 2,
+    "nome": "Maria Souza",
+    "email": "maria@email.com"
+  }
+}

@@ -20,6 +20,8 @@ export default function Navbar() {
           <Link to="/home" className="nav-item">Início</Link>
           <Link to="/busca" className="nav-item">🔍 Buscar Carros</Link>
           <Link to="/disponibilizar" className="nav-item">🔑 Anunciar</Link>
+          <Link to="/meusanuncios" className="nav-item">🚘 Meus Anúncios</Link>
+          <Link to="/chat" className="nav-item">💬 Chat</Link>
           
           {/* O LOCAL PARA IR PARA AS CONFIGURAÇÕES (PERFIL) */}
           <Link to="/configuracoes" className="nav-item nav-profile">

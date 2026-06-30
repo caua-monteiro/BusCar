@@ -30,3 +30,12 @@ input{
     outline:none;
 
 }
+
+.field-error {
+    color: #ff4d4f;
+    font-size: 0.8rem;
+    margin-top: 4px;
+    display: block;
+    text-align: left;
+    margin-left: 5px;
+}

@@ -1,0 +1,21 @@
+{
+  "id": 1,
+  "marca": "Honda",
+  "modelo": "Civic",
+  "ano": 2022,
+  "precoDia": 150,
+  "descricao": "Ótimo estado",
+  "cidade": "Ponta Grossa",
+  "avaliacao": 0,
+  "imagem": null,
+  "createdAt": "2026-06-25T23:11:47.830Z",
+  "proprietario": {
+    "id": 1,
+    "nome": "João Silva",
+    "email": "joao@email.com",
+    "senha": "$2b$10$/r0ot6KQ7.2BdACahnu0RO1gfyBdaKV79vktVGRJ7bKTK7SAKV4d2",
+    "telefone": "42999999999",
+    "avaliacao": 0,
+    "createdAt": "2026-06-25T23:11:47.271Z"
+  }
+}

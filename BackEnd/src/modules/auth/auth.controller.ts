@@ -4,11 +4,16 @@ import { z } from "zod";
 
 const authService = new AuthService();
 
+import { isValidCPF, isValidCNH } from "../../utils/validators";
+
 const registerSchema = z.object({
     nome: z.string().min(2),
     email: z.string().email(),
     senha: z.string().min(6),
-    telefone: z.string().min(10)
+    telefone: z.string().min(10),
+    cpf: z.string().refine((val) => isValidCPF(val), { message: "CPF inválido." }),
+    endereco: z.string().min(5),
+    cnh: z.string().refine((val) => isValidCNH(val), { message: "CNH inválida." })
 });
 
 const loginSchema = z.object({

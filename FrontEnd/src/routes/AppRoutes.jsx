@@ -6,6 +6,9 @@ import Home from "../pages/Home";
 import Busca from "../pages/Busca";
 import Disponibilizar from "../pages/Disponibilizar";
 import Configuracoes from "../pages/Configuracoes";
+import MeusAnuncios from "../pages/MeusAnuncios";
+import Chat from "../pages/Chat";
+import Carro from "../pages/Carro";
 
 export default function AppRoutes() {
   const location = useLocation();
@@ -19,10 +22,13 @@ export default function AppRoutes() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/cadastro" element={<Cadastro />} />
-        <Route path={esconderNavbar ? "/home" : "/home"} element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/busca" element={<Busca />} />
         <Route path="/disponibilizar" element={<Disponibilizar />} />
+        <Route path="/meusanuncios" element={<MeusAnuncios />} />
+        <Route path="/chat" element={<Chat />} />
         <Route path="/configuracoes" element={<Configuracoes />} />
+        <Route path="/carro/:id" element={<Carro />} />
       </Routes>
     </>
   );

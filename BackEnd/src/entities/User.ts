@@ -18,6 +18,15 @@ export class User {
     @Column({ nullable: true })
     telefone!: string;
 
+    @Column({ unique: true })
+    cpf!: string;
+
+    @Column()
+    endereco!: string;
+
+    @Column({ unique: true })
+    cnh!: string;
+
     @Column({ type: "float", default: 0 })
     avaliacao!: number;
 

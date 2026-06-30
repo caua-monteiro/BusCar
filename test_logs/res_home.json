@@ -1,0 +1,11 @@
+{
+  "destaques": [
+    {
+      "id": 1,
+      "modelo": "Civic",
+      "marca": "Honda",
+      "precoDia": "180.00",
+      "imagem": "url-imagem"
+    }
+  ]
+}

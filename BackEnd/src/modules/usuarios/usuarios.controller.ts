@@ -5,9 +5,12 @@ import { z } from "zod";
 
 const usuariosService = new UsuariosService();
 
+import { isValidCNH } from "../../utils/validators";
+
 const updateSchema = z.object({
     nome: z.string().min(2).optional(),
-    telefone: z.string().min(10).optional()
+    telefone: z.string().min(10).optional(),
+    cnh: z.string().refine((val) => isValidCNH(val), { message: "CNH inválida." }).optional()
 });
 
 const updateSenhaSchema = z.object({
